@@ -90,11 +90,11 @@ int main(int argc, char** argv)
                     double angle = asin((cos(sub[i].pose.theta)*dy - sin(sub[i].pose.theta)*dx)/distance);
                     pub[i].publish(getMessage(1.5*distance,4.5*angle));
                  }
-                 
+                 if(sqrt(pow(goal[n_turtle-1][0] - sub[n_turtle-1].pose.x, 2) + pow(goal[n_turtle-1][1] - sub[n_turtle-1].pose.y, 2))<0.01){
+                    break;
+                 }
                }
-               if(distance < 0.01){
-                 break;
-               } 
+               
                 loopRate.sleep();
                 ros::spinOnce();
             }
